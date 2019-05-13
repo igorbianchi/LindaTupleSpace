@@ -17,6 +17,7 @@ class Linda:
             if(self.tupleSpace[thread][x]["author"] == author and self.tupleSpace[thread][x]["data"] == data):
                removed = self.tupleSpace[thread][x]
                self.tupleSpace[thread].pop(x)
+               break
         if(not removed):
             return "Not removed, invalid tuple"
         else:
