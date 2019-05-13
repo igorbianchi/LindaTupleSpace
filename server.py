@@ -16,6 +16,7 @@ def threaded(c):
         data = c.recv(1024).decode()
         data = data.split()
 
+        # linda operations
         if (data[0] == "rd"):
             messageout = space._rd(data[1])
         elif (data[0] == "in"):
@@ -25,7 +26,7 @@ def threaded(c):
             s = ' '
             messageout = space._out(data[1], data[2], s.join(data[3:data.__len__()]))
 
-        # send back reversed string to client
+        # send back the message
         c.send(messageout.encode())
         # connection closed
     c.close()
@@ -46,9 +47,8 @@ def server_program():
         conn, address = server_socket.accept()
         print("Connection from: " + str(address))
 
+        # create a thread
         start_new_thread(threaded, (conn,))
-
-        # linda operations
 
     conn.close()  # close the connection
 
