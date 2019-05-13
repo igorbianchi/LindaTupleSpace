@@ -1,0 +1,30 @@
+Código desenvolvido por Igor Guilherme Bianchi, RA 558400, e Felipe Churuyuki Chinen, RA 496235.
+
+O projeto consiste na comunicação entre cliente e servidor utilizando métodos do Linda e sockets.
+
+O formato das funções:
+read thread
+out thread author message
+in thread author message
+
+Exemplo de uso:
+
+Entrada no cliente 1:  -> out topico igor mensagem 1
+Cria no espaço tupla um tópico com nome "topico" de autor "igor" e mensagem "mensagem 1"
+Saída esperada: Received from server: A new thread was created
+
+Entrada no cliente 2:  -> out topico igor mensagem 2
+Cria no espaço tupla do tópico "topico" uma mensagem "mensagem 2" de autor "igor"
+Saída esperada: Received from server: A thread was updated
+
+Entrada no cliente 1: -> rd topico
+Lê no espaço tupla o topico de nome "topico"
+Saída esperada: Received from server: [{'author': 'igor', 'data': 'mensagem 1'}, {'author': 'igor', 'data': 'mensagem 2'}]
+
+Entrada no cliente 3:  -> in topico igor mensagem 1
+Deleta a mensagem "mensagem 1" de autor "igor" no tópico "topico" e exibe a mensagem
+Saída esperada: Received from server: {'author': 'igor', 'data': 'mensagem 1'}
+
+Entrada no cliente 1: rd topico
+Lê no espaço tupla o topico de nome "topico"
+Saída esperada: Received from server: [{'author': 'igor', 'data': 'mensagem 2'}]
